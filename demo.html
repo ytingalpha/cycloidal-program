@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cycloid Program Demo(摆线程序Demo)</title>
+    <style>
+        body,canvas { margin: 0;padding: 0; }
+        body { background:black; }
+        #c1 { background:white;margin:20px 0 0 30px; }
+        span { color:white; }
+    </style>
+<script>
+    window.onload = function(){
+        var oC = document.getElementById('c1');
+        var oGC = oC.getContext('2d');
+        oGC.font = '18px impact';
+        oGC.textBaseline = 'top';
+
+        oGC.lineWidth = 2;
+        oGC.lineCap = 'square';
+        var angle = 0;
+        document.onclick = function (){
+            setInterval(function(){
+                var radius = 20;
+                angle += 0.2;
+                var x = radius * angle - radius * Math.sin(angle);
+                var y = 100 + radius  - radius * Math.cos(angle);
+                oGC.arc(x,y,2,0,360*Math.PI/180,false);
+                // x = aθ - a sinθ      a --> Radius(半径)
+                // y = a - a cosθ       θ --> Angle(角度)
+			    oGC.stroke();
+                oGC.close();
+            },100);
+        };
+    };
+</script>
+</head>
+
+<body>
+    <canvas id="c1" width="1000" height="500">
+        <span>不支持canvas浏览器</span>
+    </canvas> <!--默认：宽300 高150-->
+</body>
+</html>
